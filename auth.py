@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import time
+#from search_flights import browser
+
 
 link = 'https://rc.gospodaprogrammisty.ru/'
 my_email = 'nik.danilushkin@smartway.today'
@@ -29,5 +31,5 @@ def test_auth():
         button_form = browser.find_element_by_css_selector("[data-qa='sign-in-form-button']")
         button_form.click()
         assert is_element_present(browser, "[data-qa='start-search-text']"), 'не получилось авторизоваться'
-
+        return browser
         #browser.quit()
