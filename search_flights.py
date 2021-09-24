@@ -9,6 +9,7 @@ link = 'https://rc.gospodaprogrammisty.ru/'
 
 test_auth()
 
+
 def test_search_flight_one(browser):
     time.sleep(10)
     assert auth.is_element_present(browser, "[data-qa='start-search-text']"), 'не зашли в ЛК'
