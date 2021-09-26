@@ -1,6 +1,7 @@
 import pytest
 import time
 from selenium import webdriver
+from pages.base_page import BasePage
 
 import auth
 from auth import test_auth
