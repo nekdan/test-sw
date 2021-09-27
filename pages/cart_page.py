@@ -1,9 +1,6 @@
 import time
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from pages.utilities_methods import date_input_there, date_input_back
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class CartPage(BasePage):
@@ -14,12 +11,11 @@ class CartPage(BasePage):
             "Не найдена картинка для тултипа"
         #Не получается взять текст из div
         #top_tooltip = self.browser.find_elements(By.CSS_SELECTOR, ".certificate_content_UR3X .wrapper_lsVc .tooltip_3Wwl")[-2].text
-        #rint(f"--ТУЛТИП=({top_tooltip})")
+        #print(f"--ТУЛТИП={top_tooltip}")
         #assert top_tooltip == header_tooltip, f"e: {top_tooltip}"
         assert self.presence_of_element_located(By.CSS_SELECTOR, "[data-qa='cart-air-certificate-checkbox']"), \
             "Нет чекбокса о покупке сертификата"
-        text_certificate = self.browser.find_elements(By.CSS_SELECTOR, ".content_3idD .certificate_content_UR3X")[
-            -1].text
+        text_certificate = self.browser.find_elements(By.CSS_SELECTOR, ".content_3idD .certificate_content_UR3X")[-1].text
         assert text_certificate != description_certificate, \
             f"не=: {text_certificate}={description_certificate}"
 
@@ -66,12 +62,3 @@ class CartPage(BasePage):
         else:
             print("Произошла ошибка при покупке")
             return False
-
-    def clean_all_ticket(self):
-        self.browser.execute_script("window.scrollTo(0,0);")
-        clean_button = self.browser.find_element(By.CSS_SELECTOR, "[data-qa='cart-delete-all-title']")
-        clean_button.click()
-        confirm_clean = self.browser.find_element(By.CSS_SELECTOR, "[data-qa='cart-delete-all-modal-success']")
-        confirm_clean.click()
-        assert self.is_element_present(By.CSS_SELECTOR, "[data-qa='cart-empty']"), \
-            "Корзина не очищена"

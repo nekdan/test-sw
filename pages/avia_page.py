@@ -43,7 +43,6 @@ class AviaPage(BasePage):
         airline_chekbox.click()
         assert self.is_element_present(
             By.XPATH, f"//div[@data-qa='search-airline-aircompany-includes']//div[text() = '{airline}']"), "Фильтр по АК не выбран"
-        #time.sleep(3)
 
 
     def add_to_cart(self):
@@ -53,7 +52,6 @@ class AviaPage(BasePage):
         add_button.click()
         assert self.is_element_present(By.CSS_SELECTOR, "[data-qa='search-button-cart-notification']"), \
             "Нотификация добавления не появилась"
-        #assert self.is_disappeared(*CartPageLocators.NOTIFICATION_ALERT)
         to_cart_button = self.browser.find_element(By.CSS_SELECTOR, "[data-qa='header-cart']")
         to_cart_button.click()
 
