@@ -16,6 +16,7 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+        self.browser.maximize_window()
 
     def is_element_present(self, how, what):
         try:
@@ -27,7 +28,7 @@ class BasePage():
     def login_page(self):
         button_login = self.browser.find_element(By.CSS_SELECTOR, "[data-qa='sign-in-home-button']")
         button_login.click()
-        assert self.is_element_present(By.CSS_SELECTOR, "[data-qa='sign-in-text']"), 'не открылась форма авторизации'
+        assert self.presence_of_element_located(By.CSS_SELECTOR, "[data-qa='sign-in-text']"), 'не открылась форма авторизации'
 
     def authorization(self, my_email, my_password):
         email = self.browser.find_element(By.CSS_SELECTOR, "[data-qa='sign-in-email-input']")
